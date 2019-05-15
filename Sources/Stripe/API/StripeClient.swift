@@ -50,7 +50,8 @@ public final class StripeClient {
     public var taxRates: TaxRateRoutes
     public var creditNotes: CreditNoteRoutes
     public var usageRecords: UsageRecordRoutes
-    
+    public var webhookEndpoints: WebhookEndpointRoutes
+
     init(eventLoop: EventLoopGroup, apiKey: String) {
         let client = HTTPClient(eventLoopGroupProvider: .shared(eventLoop))
         let handler = StripeAPIHandler(httpClient: client, apiKey: apiKey)
@@ -96,5 +97,6 @@ public final class StripeClient {
         taxRates = StripeTaxRateRoutes(apiHandler: handler)
         creditNotes = StripeCreditNoteRoutes(apiHandler: handler)
         usageRecords = StripeUsageRecordRoutes(apiHandler: handler)
+        webhookEndpoints = StripeWebhookEndpointRoutes(apiHandler: handler)
     }
 }

@@ -193,6 +193,9 @@ internal enum StripeAPIEndpoint {
     case usageRecords(String)
     case usageRecordSummaries(String)
     
+    case webhookEndpoint
+    case webhookEndpoints(String)
+
     var endpoint: String {
         switch self {
         case .balance: return APIBase + APIVersion + "balance"
@@ -349,6 +352,9 @@ internal enum StripeAPIEndpoint {
             
         case .usageRecords(let subscriptionItem): return APIBase + APIVersion + "subscription_items/\(subscriptionItem)/usage_records"
         case .usageRecordSummaries(let subscriptionItem): return APIBase + APIVersion + "subscription_items/\(subscriptionItem)/usage_record_summaries"
+
+        case .webhookEndpoint: return APIBase + APIVersion + "webhook_endpoints"
+        case .webhookEndpoints(let webhook_endpoint): return APIBase + APIVersion + "webhook_endpoints/\(webhook_endpoint)"
         }
     }
 }
